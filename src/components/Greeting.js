@@ -1,20 +1,21 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getGreetingThunk } from '../redux/greetings/Greetings';
+import { fetchGreeting } from '../redux/greetings/Greetings';
 
-function Greeting() {
+const Greeting = () => {
   const dispatch = useDispatch();
-  const greeting = useSelector((state) => state.greetingReducer.message);
+  const greeting = useSelector((state) => state.greeting.message);
   useEffect(() => {
-    dispatch(getGreetingThunk());
+    dispatch(fetchGreeting());
   }, [dispatch]);
   return (
     <>
-      <h2>
+      <h1>
         Greeting:
+        {' '}
         {greeting}
-      </h2>
+      </h1>
     </>
   );
-}
+};
 export default Greeting;
